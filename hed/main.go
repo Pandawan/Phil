@@ -5,12 +5,11 @@ import (
 	"net/http"
 	"log"
 	"math/rand"
-	"github.com/hashgraph/hedera-sdk-go"
+	// "github.com/hashgraph/hedera-sdk-go"
 	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
-	handler()
 	router := httprouter.New()
 	router.GET("/donate", handler)
 

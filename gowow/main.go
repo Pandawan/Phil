@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"log"
+	"os"
 	"math/rand"
 	// "github.com/hashgraph/hedera-sdk-go"
 	"github.com/julienschmidt/httprouter"
@@ -13,7 +14,14 @@ func main() {
 	router := httprouter.New()
 	router.GET("/donate", handler)
 
-	log.Fatal(http.ListenAndServe(":6969", router))
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		port = "8080"
+	}
+
+
+	log.Fatal(http.ListenAndServe(":" + port, router))
 }
 
 func handler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {

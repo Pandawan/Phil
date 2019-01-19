@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "ask-sdk-core": "^2.3.0",
-    "ask-sdk-model": "^1.11.2"
+    "ask-sdk-model": "^1.11.2",
+    "axios": "^0.18.0"
   }
 }

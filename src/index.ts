@@ -5,6 +5,7 @@ import {
   SkillBuilders,
 } from 'ask-sdk-core';
 import { Response, SessionEndedRequest } from 'ask-sdk-model';
+import axios from 'axios';
 
 const LaunchRequestHandler: RequestHandler = {
   canHandle(handlerInput: HandlerInput): boolean {
@@ -46,8 +47,10 @@ const PayCharityIntentHandler: RequestHandler = {
       handlerInput.requestEnvelope.request.intent.name === 'PayCharityIntent'
     );
   },
-  handle(handlerInput: HandlerInput): Response {
-    const speechText = `Ok, I'll 0.015 pay to {charity}.`;
+  async handle(handlerInput: HandlerInput): Promise<Response> {
+    // charity WOWOWEEE
+    const charity = await axios.get('https://medibot.appspot.com/donate');
+    const speechText = `Ok, I'll 0.015 pay to ${charity}.`;
 
     return handlerInput.responseBuilder
       .speak(speechText)

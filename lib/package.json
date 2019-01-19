@@ -1,0 +1,16 @@
+{
+  "name": "api-clusterfuck",
+  "version": "1.0.0",
+  "description": "API-ClusterFuck",
+  "main": "index.js",
+  "repository": "https://github.com/PandawanFr/api-clusterfuck.git",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "ask-sdk-core": "^2.3.0",
+    "ask-sdk-model": "^1.11.2"
+  }
+}

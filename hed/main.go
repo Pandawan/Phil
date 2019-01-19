@@ -2,17 +2,30 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"log"
 	// "os"
-	"github.com/hashgraph/hedera-sdk-go"
+	"math/rand"
+	// "github.com/hashgraph/hedera-sdk-go"
+	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
-	accountID := hedera.AccountID{Account: 1002}
+	router := httprouter.New()
+	router.GET("/donate", handler)
 
-	client, err := hedera.Dial("testnet.hedera.com:51002")
-	if err != nil {
-		panic(err)
-	}
+	log.Fatal(http.ListenAndServe(":6969", router))
+}
+
+func handler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	charity, id := charitySelector()
+	fmt.Println(charity, id)
+
+	// accountID := hedera.AccountID{Account: 1002}
+	// client, err := hedera.Dial("testnet.hedera.com:51002")
+	// if err != nil {
+	// 	panic(err)
+	// }
 
 	//
 	// client.SetNode(hedera.AccountID{Account: 3})
@@ -24,14 +37,14 @@ func main() {
 	// 	return operatorSecret
 	// })
 	//
-	defer client.Close()
+	// defer client.Close()
 
-	balance, err := client.Account(accountID).Balance().Get()
+	// balance, err := client.Account(accountID).Balance().Get()
 	// if err != nil {
 	// 	fmt.Println(err)
 	// }
 
-	fmt.Println(balance)
+	// fmt.Println(balance)
 	
 	// operatorAccountID := hedera.AccountID{Account: 2}
 	// response, err := client.CreateAccount().
@@ -67,4 +80,26 @@ func main() {
 	// }
 
 	// fmt.Printf("account = %v\n", *receipt.AccountID)
+
+	fmt.Fprintln(w, charity)
+}
+
+func charitySelector() (string, int) {
+	var hash map[string]int
+	hash = make(map[string]int)
+
+	hash["Defenders of Wildlife"] = 1
+	hash["Sierra Club"]= 2
+	hash["Global Footprint Network"] = 3
+	hash["Marine Conservation Institute"] = 4
+	hash["Earth Day Network"] = 5
+
+	key, value := "", 0
+	i := rand.Intn(5)
+	for key, value = range hash {
+		i--
+		if (i == 0) { break }
+	}
+
+	return key, value
 }

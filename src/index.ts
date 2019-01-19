@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import {
   ErrorHandler,
   HandlerInput,
@@ -48,14 +49,13 @@ const PayCharityIntentHandler: RequestHandler = {
     );
   },
   async handle(handlerInput: HandlerInput): Promise<Response> {
-    // charity WOWOWEEE
     const charity = await axios.get('https://medibot.appspot.com/donate');
-    const speechText = `Ok, I'll 0.015 pay to ${charity}.`;
+    const speechText = `Ok, I'll pay 0.015 to ${charity.data}.`;
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .withSimpleCard('Paying 0.015 to {charity}.', speechText)
+      .withSimpleCard(`Paying 0.015 to ${charity.data}.`, speechText)
       .getResponse();
   },
 };

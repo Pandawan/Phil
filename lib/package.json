@@ -1,9 +1,9 @@
 {
   "name": "api-quagmire",
   "version": "1.0.0",
-  "description": "API-ClusterFuck",
+  "description": "API-Quagmire",
   "main": "index.js",
-  "repository": "https://github.com/PandawanFr/api-quagmire.git",
+  "repository": "https://github.com/PandawanFr/API-Quagmire.git",
   "license": "MIT",
   "private": true,
   "scripts": {

@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"net/http"
 	"log"
-	// "os"
 	"math/rand"
-	// "github.com/hashgraph/hedera-sdk-go"
+	"github.com/hashgraph/hedera-sdk-go"
 	"github.com/julienschmidt/httprouter"
 )
 
 func main() {
+	handler()
 	router := httprouter.New()
 	router.GET("/donate", handler)
 
@@ -26,17 +26,16 @@ func handler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	// if err != nil {
 	// 	panic(err)
 	// }
-
-	//
+	
 	// client.SetNode(hedera.AccountID{Account: 3})
 	// client.SetOperator(accountID, func() hedera.SecretKey {
-	// 	operatorSecret, err := hedera.SecretKeyFromString(os.Getenv("OPERATOR_SECRET"))
+	// 	operatorSecret, err := hedera.SecretKeyFromString("302e020100300506032b657004220420d07c25742a1ea56a470747a445c84a917e1c8d8d18e0cbcb806ef5d58e3046e2")
 	// 	if err != nil {
 	// 		panic(err)
 	// 	}
 	// 	return operatorSecret
 	// })
-	//
+	
 	// defer client.Close()
 
 	// balance, err := client.Account(accountID).Balance().Get()
@@ -45,7 +44,7 @@ func handler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	// }
 
 	// fmt.Println(balance)
-	
+	//----------
 	// operatorAccountID := hedera.AccountID{Account: 2}
 	// response, err := client.CreateAccount().
 	// 	Key(public).

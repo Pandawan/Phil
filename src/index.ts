@@ -11,29 +11,12 @@ const LaunchRequestHandler: RequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput: HandlerInput): Response {
-    const speechText = 'Welcome to the Alexa Skills Kit, you can say hello!';
+    const speechText = `Hi, I'm API-Quagmire. It's time to save the world, one donation at a time.`;
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .withSimpleCard('Hello World', speechText)
-      .getResponse();
-  },
-};
-
-const HelloWorldIntentHandler: RequestHandler = {
-  canHandle(handlerInput: HandlerInput): boolean {
-    return (
-      handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
-      handlerInput.requestEnvelope.request.intent.name === 'HelloWorldIntent'
-    );
-  },
-  handle(handlerInput: HandlerInput): Response {
-    const speechText = 'Hello World!';
-
-    return handlerInput.responseBuilder
-      .speak(speechText)
-      .withSimpleCard('Hello World', speechText)
+      .withSimpleCard('Hello, time to save the world!', speechText)
       .getResponse();
   },
 };
@@ -46,12 +29,30 @@ const HelpIntentHandler: RequestHandler = {
     );
   },
   handle(handlerInput: HandlerInput): Response {
-    const speechText = 'You can say hello to me!';
+    const speechText = 'You can ask me to pay a random charity.';
 
     return handlerInput.responseBuilder
       .speak(speechText)
       .reprompt(speechText)
-      .withSimpleCard('Hello World', speechText)
+      .withSimpleCard('Ask me to "pay a random charity"', speechText)
+      .getResponse();
+  },
+};
+
+const PayCharityIntentHandler: RequestHandler = {
+  canHandle(handlerInput: HandlerInput): boolean {
+    return (
+      handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
+      handlerInput.requestEnvelope.request.intent.name === 'PayCharityIntent'
+    );
+  },
+  handle(handlerInput: HandlerInput): Response {
+    const speechText = `Ok, I'll 0.015 pay to {charity}.`;
+
+    return handlerInput.responseBuilder
+      .speak(speechText)
+      .reprompt(speechText)
+      .withSimpleCard('Paying 0.015 to {charity}.', speechText)
       .getResponse();
   },
 };
@@ -71,7 +72,7 @@ const CancelAndStopIntentHandler: RequestHandler = {
 
     return handlerInput.responseBuilder
       .speak(speechText)
-      .withSimpleCard('Hello World', speechText)
+      .withSimpleCard('Goodbye!', speechText)
       .getResponse();
   },
 };
@@ -108,10 +109,10 @@ const SkillErrorHandler: ErrorHandler = {
 exports.handler = SkillBuilders.custom()
   .addRequestHandlers(
     LaunchRequestHandler,
-    HelloWorldIntentHandler,
     HelpIntentHandler,
     CancelAndStopIntentHandler,
-    SessionEndedRequestHandler
+    SessionEndedRequestHandler,
+    PayCharityIntentHandler
   )
   .addErrorHandlers(SkillErrorHandler)
   .lambda();

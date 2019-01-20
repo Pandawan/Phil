@@ -1,11 +1,11 @@
 #include <WiFi.h>
 
 // WiFi network name and password:
-const char * networkName = "Rohan";
-const char * networkPswd = "07092001";
+const char * networkName = "Miguel's iPhone";
+const char * networkPswd = "Riperino";
 
 // Internet domain to request from:
-const char * hostDomain = "dweet.io";
+const char * hostDomain = "example.com";
 const int hostPort = 80;
 
 const int LED_PIN = 21;

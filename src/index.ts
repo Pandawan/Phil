@@ -13,7 +13,7 @@ const LaunchRequestHandler: RequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput: HandlerInput): Response {
-    const speechText = `Hi, I'm API-Quagmire. It's time to save the world, one donation at a time.`;
+    const speechText = `Hi, I'm Phil, here to help you save the world, one donation at a time.`;
 
     return handlerInput.responseBuilder
       .speak(speechText)
@@ -49,7 +49,7 @@ const PayCharityIntentHandler: RequestHandler = {
     );
   },
   async handle(handlerInput: HandlerInput): Promise<Response> {
-    const charity = await axios.get('https://medibot.appspot.com/donate');
+    const charity = await axios.get('localhost:6969/donate');
     const speechText = `Ok, I'll pay 1 H BAR to ${charity.data}.`;
 
     return handlerInput.responseBuilder

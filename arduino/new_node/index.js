@@ -1,19 +1,15 @@
 const SerialPort = require('serialport');
 const axios = require('axios');
 
-// todo: change port so it works on Rohan's Mac
-const serial = new SerialPort('/dev/tty-usbserial1', {
+const serial = new SerialPort('/dev/tty.usbserial-DN03GDN9', {
     baudRate: 115200
 });
 
+serial.on('data', buffer => {
+    console.log('Data:', buffer[0])
+});
+
 let date = new Date();
-let value = 0x00;
-
-function toggle() {
-    value = value === 0x00 ? 0x01 : 0x00;
-    return serial.write(new Buffer([value]));
-};
-
 
 function check() {
     axios.get('https://dweet.io/get/latest/dweet/for/quagmire').then((response) => {
@@ -22,9 +18,11 @@ function check() {
             if (date < newDate) {
                 console.log('Light up!');
                 date = newDate;
+                serial.write('1', err => {
+                    if (err)
+                        console.log(err.message)
+                });
             }
-            toggle();
-            setTimeout(toggle, 500);
             setTimeout(check, 5000);
         })
         .catch((error) => {

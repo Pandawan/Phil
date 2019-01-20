@@ -1,15 +1,16 @@
-//#include <ESP8266WiFi.h>
+#include <WiFi.h>
 
-int LED = LED_BUILTIN;
+int LED = 21;
 
-const char * ssid = "YOUR_NETWORK_HERE";
-const char * password = "YOUR_PASSWORD_HERE";
-
+const char * ssid = "Rohan";
+const char * password = "07092001";
 const char* host = "www.dweet.io";
+
+String last = "";
 
 void setup() {
   pinMode(LED, OUTPUT);
-  digitalWrite(LED, HIGH);
+  digitalWrite(LED, LOW);
 
   Serial.begin(115200);
   delay(100);
@@ -30,8 +31,6 @@ void setup() {
   Serial.println("WiFi connected");
   Serial.println("IP address: ");
   Serial.println(WiFi.localIP());
-
-  String last = "";
 }
 
 void loop() {

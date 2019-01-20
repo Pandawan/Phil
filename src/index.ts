@@ -49,7 +49,7 @@ const PayCharityIntentHandler: RequestHandler = {
     );
   },
   async handle(handlerInput: HandlerInput): Promise<Response> {
-    const charity = await axios.get('169.233.120.95:6969');
+    const charity = await axios.get('http://169.233.120.95:6969');
     const speechText = `Ok, I'll pay 1 H BAR to ${charity.data}.`;
 
     return handlerInput.responseBuilder
@@ -101,6 +101,7 @@ const SkillErrorHandler: ErrorHandler = {
   },
   handle(handlerInput: HandlerInput, error: Error): Response {
     console.log(`Error handled: ${error.message}`);
+    console.log(error);
 
     return handlerInput.responseBuilder
       .speak("Sorry, I can't understand the command. Please say again.")

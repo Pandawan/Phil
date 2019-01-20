@@ -1,9 +1,9 @@
 {
-  "name": "phil",
+  "name": "api-quagmire",
   "version": "1.0.0",
-  "description": "Phil",
+  "description": "API-Quagmire",
   "main": "lib/index.js",
-  "repository": "https://github.com/PandawanFr/Phil.git",
+  "repository": "https://github.com/PandawanFr/API-Quagmire.git",
   "license": "MIT",
   "private": true,
   "scripts": {

@@ -13,7 +13,7 @@ const LaunchRequestHandler: RequestHandler = {
     return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
   },
   handle(handlerInput: HandlerInput): Response {
-    const speechText = `Hi, I'm API-Quagmire. It's time to save the world, one donation at a time.`;
+    const speechText = `Hi, I'm Phil, here to help you save the world, one donation at a time.`;
 
     return handlerInput.responseBuilder
       .speak(speechText)

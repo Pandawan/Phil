@@ -49,7 +49,7 @@ const PayCharityIntentHandler: RequestHandler = {
     );
   },
   async handle(handlerInput: HandlerInput): Promise<Response> {
-    const charity = await axios.get('localhost:6969/donate');
+    const charity = await axios.get('169.233.120.95:6969');
     const speechText = `Ok, I'll pay 1 H BAR to ${charity.data}.`;
 
     return handlerInput.responseBuilder

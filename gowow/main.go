@@ -17,7 +17,7 @@ var secret = "302e020100300506032b657004220420d07c25742a1ea56a470747a445c84a917e
 
 func main() {
 	router := httprouter.New()
-	router.GET("/donate", handler)
+	router.GET("/", handler)
 
 	port := os.Getenv("PORT")
 

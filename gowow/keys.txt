@@ -1,2 +1,14 @@
-secret = 302e020100300506032b65700422042081962dfd267902a97aa1378c5107c48e1eeb95cf47e75f457e7b2a27700d1257
-public = 302a300506032b657003210000989819974d3465353ec7447b4a9e6574ec81a3c3115585e3e3ddc3e54d9914
+// package main
+
+// import (
+// 	"fmt"
+// 	"github.com/hashgraph/hedera-sdk-go"
+// )
+
+// func main() {
+// 	secret, _ := hedera.GenerateSecretKey()
+// 	fmt.Printf("secret = %v\n", secret)
+	
+// 	public := secret.Public()
+// 	fmt.Printf("public = %v\n", public)
+// }

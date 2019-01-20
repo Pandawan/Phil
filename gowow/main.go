@@ -30,13 +30,13 @@ func main() {
 
 func handler(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	charity, id := charitySelector()
-	
-	fmt.Println(charity, id)
-	fmt.Fprintln(w, charity)
-	
+
 	url := "https://dweet.io/dweet/for/quagmire?" + strings.Replace(charity, " ", "_", -1)
 	fmt.Println(url)
 	http.Get(url)
+	
+	fmt.Println(charity, id)
+	fmt.Fprintln(w, charity)
 
 	// balance()
 	transfer()
